@@ -1,9 +1,6 @@
 package org.example.jdk.synthetic;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 
 /**
  * Synthetic 关键字
@@ -18,6 +15,7 @@ public class SyntheticDemo {
         fieldDemo(); //this$0 true
         //sayHello();
         methodDemo();
+        constructorDemo();
     }
 
     public static void fieldDemo() {
@@ -26,6 +24,17 @@ public class SyntheticDemo {
             System.out.println(field.getName() + " " + field.isSynthetic());
         }
     }
+
+    public static void constructorDemo() {
+        Constructor[] constructors = ConstructorDemo.ConstructorDemoInner.class.getDeclaredConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor.getName() + " " + constructor.isSynthetic());
+            System.out.println(constructor.getModifiers());
+            //modifiers=4096 代表 Synthetic
+            System.out.println(Modifier.toString(constructor.getModifiers()));
+        }
+    }
+
 
     public static void methodDemo() {
         Method[] methods = MethodDemo.MethodDemoInner.class.getDeclaredMethods();

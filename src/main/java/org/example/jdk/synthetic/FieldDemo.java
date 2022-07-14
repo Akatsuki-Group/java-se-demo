@@ -10,6 +10,9 @@ public class FieldDemo {
     }
 
     class FieldDemoInner{
+        public FieldDemoInner () {
+        }
+
         public String hello() {
             return sayHello();
         }
