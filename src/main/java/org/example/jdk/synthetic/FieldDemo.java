@@ -6,15 +6,12 @@ package org.example.jdk.synthetic;
 public class FieldDemo {
 
     public String sayHello() {
-        return "Hello";
+        return "FieldDemo Hello";
     }
 
-    class FieldDemoInner{
-        public FieldDemoInner () {
-        }
-
+    class FieldDemoInner {
         public String hello() {
-            return sayHello();
+            return "FieldDemoInner " + sayHello();
         }
     }
 }

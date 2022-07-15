@@ -13,7 +13,7 @@ import java.lang.reflect.*;
 public class SyntheticDemo {
     public static void main(String[] args) {
         fieldDemo(); //this$0 true
-        //sayHello();
+        sayHello();
         methodDemo();
         constructorDemo();
     }
@@ -44,20 +44,8 @@ public class SyntheticDemo {
     }
 
     public static void sayHello() {
-        try {
-            Method hello = FieldDemo.FieldDemoInner.class.getMethod("hello");
-            Constructor<FieldDemo.FieldDemoInner> constructor = FieldDemo.FieldDemoInner.class.getConstructor();
-            FieldDemo.FieldDemoInner fieldDemoInner = constructor.newInstance();
-            System.out.println(hello.invoke(fieldDemoInner));
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-
+        FieldDemo fieldDemo = new FieldDemo();
+        System.out.println(fieldDemo.sayHello());
+        System.out.println(fieldDemo.new FieldDemoInner().hello());
     }
 }
