@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @date: 2022/7/28
  * @FileName: Handle
- * @author: Yan
+ * @author: yuanct
  * @Des: 定义一个函数式接口
  */
 @FunctionalInterface

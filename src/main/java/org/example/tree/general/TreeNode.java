@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @date: 2022/7/25
  * @FileName: TreeNode
- * @author: Yan
+ * @author: yuanct
  * @Des: 树节点父类，所有需要使用TreeUtils工具类形成树形结构等操作的节点都需要实现该接口
  *
  */
