@@ -25,6 +25,9 @@ public class Demo3 {
             for (int i = 5; i >= 0; i--) {
                 int j = i;
                 futureList.add(executorService.submit(() -> {
+                    if(j%2==0){
+                        throw new RuntimeException("第"+j+"个线程发生异常了");
+                    }
                     TimeUnit.SECONDS.sleep(j);
                     return j;
                 }));

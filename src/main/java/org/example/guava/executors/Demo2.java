@@ -21,7 +21,7 @@ public class Demo2 {
             ListenableFuture<Integer> submit = executorService.submit(() -> {
                 log.info("{}", System.currentTimeMillis());
                 TimeUnit.SECONDS.sleep(4);
-                //int i = 10 / 0;
+                int i = 10 / 0;
                 log.info("{}", System.currentTimeMillis());
                 return 10;
             });
