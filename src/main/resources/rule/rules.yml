@@ -1,0 +1,56 @@
+---
+name: "1"
+description: "1"
+condition: "user.getAge()>26"
+priority: 1
+actions:
+  - "user.setAge(user.age-2);System.out.println(user);"
+---
+name: "2"
+description: "2"
+condition: "user.getAge()<26"
+priority: 2
+actions:
+  - "UserService.doAction1(user)"
+---
+name: "3"
+description: "3"
+condition: "user.name.length<10"
+priority: 3
+actions:
+  - "UserService.doAction2(user)"
+---
+name: "4"
+description: "4"
+condition: "user.name.length<40"
+priority: 4
+actions:
+  - "System.out.println(\"rule4 \"+userinfo)"
+---
+name: "5"
+description: "5"
+condition: "user.name.length<30"
+priority: 5
+actions:
+  - "UserService.doAction4(userinfo)"
+---
+name: "6"
+description: "6"
+condition: "user.name.length<30"
+priority: 6
+actions:
+  - "System.out.println(\"rule6 \"+userinfo)"
+---
+name: "7"
+description: "7"
+condition: "user.name.length<30"
+priority: 7
+actions:
+  - "UserService.doAction4(user)"
+---
+name: "8"
+description: "8"
+condition: "user.name.length<30"
+priority: 8
+actions:
+  - "System.out.println(\"rule8 \"+user)"
