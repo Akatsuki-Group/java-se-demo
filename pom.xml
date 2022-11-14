@@ -95,6 +95,28 @@
             <artifactId>jol-core</artifactId>
             <version>0.9</version>
         </dependency>
+
+
+        <!--easy rules核心库-->
+        <dependency>
+            <groupId>org.jeasy</groupId>
+            <artifactId>easy-rules-core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <!--规则定义文件格式，支持json,yaml等-->
+        <dependency>
+            <groupId>org.jeasy</groupId>
+            <artifactId>easy-rules-support</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <!--支持mvel规则语法库-->
+        <dependency>
+            <groupId>org.jeasy</groupId>
+            <artifactId>easy-rules-mvel</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

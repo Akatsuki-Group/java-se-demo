@@ -1,5 +1,7 @@
 package org.example.array;
 
+import java.util.Optional;
+
 public class Array {
 
 
@@ -12,6 +14,7 @@ public class Array {
         integers[9] = 2;//lies
         integers[9] = 400;//foes
         System.out.println(integers[9] );
+        Optional.ofNullable(integers[9]);
     }
 
 
