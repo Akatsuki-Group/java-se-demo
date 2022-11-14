@@ -12,6 +12,7 @@ condition: "user.getAge()<26"
 priority: 2
 actions:
   - "UserService.doAction1(user)"
+  - "System.out.println('RULE2'+user);"
 ---
 name: "3"
 description: "3"
