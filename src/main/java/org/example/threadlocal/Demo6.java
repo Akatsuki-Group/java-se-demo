@@ -1,13 +1,11 @@
 package org.example.threadlocal;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import com.alibaba.ttl.threadpool.TtlExecutors;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -79,7 +77,13 @@ public class Demo6 {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+//        test();
+//        test1();
+        test2();
+    }
+
+    public static void test() {
         //需要插入的数据
         List<String> dataList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -103,5 +107,31 @@ public class Demo6 {
         }
 
         disposeRequestExecutor.shutdown();
+    }
+
+    public static void test1() throws InterruptedException {
+        //单一线程池
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        //InheritableThreadLocal存储
+        InheritableThreadLocal<String> username = new InheritableThreadLocal<>();
+        for (int i = 0; i < 10; i++) {
+            username.set("公众号：码猿技术专栏—"+i);
+            Thread.sleep(3000);
+            CompletableFuture.runAsync(()-> System.out.println(username.get()),executorService);
+        }
+    }
+
+    public static void test2() throws Exception {
+        //单一线程池
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        //需要使用TtlExecutors对线程池包装一下
+        executorService = TtlExecutors.getTtlExecutorService(executorService);
+        //TransmittableThreadLocal创建
+        TransmittableThreadLocal<String> username = new TransmittableThreadLocal<>();
+        for (int i = 0; i < 10; i++) {
+            username.set("公众号：码猿技术专栏—" + i);
+            Thread.sleep(3000);
+            CompletableFuture.runAsync(() -> System.out.println(username.get()), executorService);
+        }
     }
 }
