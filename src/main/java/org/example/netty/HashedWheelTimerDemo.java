@@ -26,10 +26,10 @@ public class HashedWheelTimerDemo {
         start = dateTime.getTime();
         System.out.println(StrUtil.format("添加任务时间【{}】", DateUtil.format(dateTime, "yyyy-MM-dd HH:mm:ss.SSS")));
         Timeout timeout = timer.newTimeout(task1, 5, TimeUnit.SECONDS);
-        boolean cancel = timeout.cancel();
-        if (cancel){
-            System.out.println("取消任务成功");
-        }
+//        boolean cancel = timeout.cancel();
+//        if (cancel){
+//            System.out.println("取消任务成功");
+//        }
         timer.newTimeout(task2, 10, TimeUnit.SECONDS);
         timer.newTimeout(task3, 15, TimeUnit.SECONDS);
         // 阻塞main线程
