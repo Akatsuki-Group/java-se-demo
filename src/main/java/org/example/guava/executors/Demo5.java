@@ -27,7 +27,6 @@ public class Demo5 {
                 int j = i;
                 Task task = new Task(i, "任务" + i);
                 ListenableFuture<Integer> submit = executorService.submit(task);
-                taskMap.put(task.getName(), new TaskResult(task.getName()));
                 Futures.addCallback(submit, new TaskFutureCallback(task.getName()), MoreExecutors.directExecutor());
                 futureList.add(submit);
             }
@@ -57,13 +56,17 @@ public class Demo5 {
         @Override
         public void onSuccess(Object result) {
             log.info("task:{} result: {}", taskName, result);
-            taskMap.get(taskName).setResult(result);
+            TaskResult taskResult = new TaskResult(taskName);
+            taskResult.setResult(result);
+            taskMap.put(taskName,taskResult);
         }
 
         @Override
         public void onFailure(Throwable t) {
             log.error("task:{} error: {}", taskName, t.getMessage());
-            taskMap.get(taskName).setThrowable(t);
+            TaskResult taskResult = new TaskResult(taskName);
+            taskResult.setThrowable(t);
+            taskMap.put(taskName,taskResult);
         }
     }
 
