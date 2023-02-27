@@ -3,7 +3,9 @@ package org.example.jvppeteer;
 import com.ruiyun.jvppeteer.core.Puppeteer;
 import com.ruiyun.jvppeteer.core.browser.Browser;
 import com.ruiyun.jvppeteer.core.browser.BrowserFetcher;
+import com.ruiyun.jvppeteer.core.browser.RevisionInfo;
 import com.ruiyun.jvppeteer.core.page.Page;
+import com.ruiyun.jvppeteer.core.page.Response;
 import com.ruiyun.jvppeteer.options.*;
 
 import java.io.IOException;
@@ -90,14 +92,14 @@ public class JvppeteerTest {
     }
     //页面截图
     public static void screenshot() throws IOException, ExecutionException, InterruptedException {
-        BrowserFetcher.downloadIfNotExist(null);
+        RevisionInfo revisionInfo = BrowserFetcher.downloadIfNotExist(null);
         ArrayList<String> arrayList = new ArrayList<>();
         LaunchOptions options = new LaunchOptionsBuilder().withArgs(arrayList).withHeadless(true).build();
         arrayList.add("--no-sandbox");
         arrayList.add("--disable-setuid-sandbox");
         Browser browser = Puppeteer.launch(options);
         Page page = browser.newPage();
-        page.goTo("https://www.baidu.com/?tn=98012088_10_dg&ch=3");
+        Response response = page.goTo("https://www.baidu.com/?tn=98012088_10_dg&ch=3");
         ScreenshotOptions screenshotOptions = new ScreenshotOptions();
         //设置截图范围
         Clip clip = new Clip(1.0,1.56,400,400);
@@ -105,6 +107,8 @@ public class JvppeteerTest {
         //设置存放的路径
         screenshotOptions.setPath("test.png");
         page.screenshot(screenshotOptions);
+        page.close();
+        browser.close();
     }
 
 }
