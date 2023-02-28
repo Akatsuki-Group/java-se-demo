@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.retry.RetryContext;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
@@ -51,6 +52,7 @@ public class SpringRetryTest {
         log.info("Request ResultList={}", resultList);
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     @SneakyThrows
     @Test
     public void test() {
@@ -82,7 +84,7 @@ public class SpringRetryTest {
         // do something
         Thread.sleep(200);
         sw.stop();
-        log.info(sw.prettyPrint());
+        log.info("计算得分完成，耗时：{}",sw.prettyPrint());
     }
 
 
