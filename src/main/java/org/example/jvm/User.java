@@ -20,4 +20,8 @@ public class User {
         OOMTest.list.add(this);
         System.out.println("关闭资源，userid=" + id + "即将被回收");
     }
+
+    public String sout() {
+        return "hello";
+    }
 }

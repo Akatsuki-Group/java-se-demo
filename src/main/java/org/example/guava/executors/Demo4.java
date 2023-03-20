@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class Demo4 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         log.info("star");
-        ExecutorService delegate = Executors.newFixedThreadPool(5);
+            ExecutorService delegate = Executors.newFixedThreadPool(5);
         try {
             ListeningExecutorService executorService = MoreExecutors.listeningDecorator(delegate);
             List<ListenableFuture<Integer>> futureList = new ArrayList<>();
