@@ -1,7 +1,7 @@
 package org.example.jvm;
 
 public class JavaCountUppercase {
-    static final int ITERATIONS = Math.max(Integer.getInteger("iterations", 1), 1);
+    static final int ITERATIONS = java.lang.Math.max(Integer.getInteger("iterations", 1), 1);
     public static void main(String[] args) {
         String sentence = String.join(" ", args);
         for (int iter = 0; iter < ITERATIONS; iter++) {
