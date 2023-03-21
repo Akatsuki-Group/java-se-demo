@@ -1,5 +1,6 @@
 package org.example.rateLimiter;
 
+import cn.hutool.json.JSONUtil;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -7,6 +8,7 @@ import com.google.common.util.concurrent.MoreExecutors;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.redisson.Redisson;
 import org.redisson.api.*;
+import org.redisson.client.codec.StringCodec;
 import org.redisson.config.Config;
 
 import java.io.Serializable;
@@ -59,10 +61,11 @@ public class Demo4 {
         config.useSingleServer().setAddress("redis://124.71.38.83:6379").setPassword("tt19950826tt");
         config.useSingleServer().setTimeout(10000);
         RedissonClient client = Redisson.create(config);
-        RMap<Object, Object> testMap = client.getMap("test_map");
+        RMap<String, String> testMap = client.getMap("test_map", StringCodec.INSTANCE);
         testMap.put("name","arthur");
-        testMap.put("age",18);
-        testMap.put("user",new User("arthur",18));
+        testMap.put("age","18");
+        testMap.put("user", JSONUtil.toJsonStr(new User("arthur",18)));
+        testMap.put("user", JSONUtil.toJsonStr(new User("arthur1",181)));
         testMap.entrySet().forEach(System.out::println);
         client.shutdown();
     }
