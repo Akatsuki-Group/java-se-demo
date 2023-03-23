@@ -7,6 +7,8 @@ import com.ruiyun.jvppeteer.core.browser.RevisionInfo;
 import com.ruiyun.jvppeteer.core.page.Page;
 import com.ruiyun.jvppeteer.core.page.Response;
 import com.ruiyun.jvppeteer.options.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * @author arthur
  */
+@RestController
 public class JvppeteerTest {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         //launchBrowser();
@@ -22,6 +25,12 @@ public class JvppeteerTest {
         //generatePDF();
         //tracing();
         screenshot();
+    }
+
+    @GetMapping("/test_screenshot")
+    public String test_screenshot() throws IOException, ExecutionException, InterruptedException {
+        screenshot();
+        return "success";
     }
 
 
@@ -99,10 +108,11 @@ public class JvppeteerTest {
         arrayList.add("--disable-setuid-sandbox");
         Browser browser = Puppeteer.launch(options);
         Page page = browser.newPage();
-        Response response = page.goTo("https://www.baidu.com/?tn=98012088_10_dg&ch=3");
+        Response response = page.goTo("http://localhost:8080/hello.html");
+        Thread.sleep(3000);
         ScreenshotOptions screenshotOptions = new ScreenshotOptions();
         //设置截图范围
-        Clip clip = new Clip(1.0,1.56,400,400);
+        Clip clip = new Clip(1.0,1.56,607,399);
         screenshotOptions.setClip(clip);
         //设置存放的路径
         screenshotOptions.setPath("test.png");
