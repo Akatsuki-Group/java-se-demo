@@ -29,8 +29,8 @@ public class SyncQModeDemo {
             synchronized (lock) {
                 log.debug("A get lock");
                 try {
-                    Thread.sleep(300);
-                    //lock.wait(300);
+                    //Thread.sleep(300);
+                    lock.wait(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
